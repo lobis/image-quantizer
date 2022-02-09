@@ -30,6 +30,6 @@ def test_quantize_image():
         result.paste(image, (0, 0))
         result.paste(quantized_image_bw, (image.width, 0))
         result.paste(quantized_image_bwr, (0, image.height))
-        result.paste(quantized_image_7color, (image.width, image.width))
+        result.paste(quantized_image_7color, (image.width, image.height))
 
         result.show()

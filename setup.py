@@ -7,7 +7,7 @@ README = (ROOT_DIR / "README.md").read_text()
 setup(
     name="image-quantizer",
     version="0.0.0",
-    description="Convert image into quantized image compatible with epaper display",
+    description="Convert image into quantized image compatible with Waveshare epaper display",
     long_description=README,
     url="https://github.com/lobis/image-quantizer",
     author="Luis Antonio Obis Aparicio",

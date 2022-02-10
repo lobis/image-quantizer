@@ -16,7 +16,7 @@ It can also be installed manually
 ```
 git clone https://github.com/lobis/image-quantizer
 cd image-quantizer
-python3 setup.py install
+python3 setup.py install --user
 ```
 
 ## Usage

@@ -1,21 +1,12 @@
 from PIL import Image
-import io
+
 from typing import Union
+import io
 
-from .palette import Palette
-
-PALETTE = [
-    0, 0, 0,  # Black
-    255, 255, 255,  # White
-    0, 128, 0,  # Green
-    0, 0, 255,  # Blue
-    255, 0, 0,  # Red
-    255, 255, 0,  # Yellow
-    255, 170, 0,  # Orange
-]
+from .palette import Palette, PALETTES
 
 
-def quantize_image(image: Image.Image, palette: Union[Palette, list], dither: bool = True) -> Image.Image:
+def quantize_image(image: Image.Image, palette: Union[Palette, list, str], dither: bool = True) -> Image.Image:
     # Create auxiliary image to hold the palette
     palette_image = Image.new("P", (16, 16))
 
@@ -23,8 +14,13 @@ def quantize_image(image: Image.Image, palette: Union[Palette, list], dither: bo
     palette_image.load()
     # Palette needs to be padded to 256 size, we repeat colors, it doesn't matter which
     palette_size_required = 256
-    if isinstance(palette, list):
+    if isinstance(palette, str):
+        assert palette in PALETTES.keys(), \
+            f"pallete '{palette}' is not a valid palette name. Valid names are: {list(PALETTES.keys())}"
+        palette = PALETTES[palette]
+    elif isinstance(palette, list):
         palette = Palette(palette)
+
     palette_flat = palette.flat()
     assert len(palette_flat) <= palette_size_required * 3
     palette_padded = [palette_flat[i % len(palette_flat)]
@@ -36,7 +32,7 @@ def quantize_image(image: Image.Image, palette: Union[Palette, list], dither: bo
     return quantized_image
 
 
-def pillow_image_to_bytes(image, format="PNG"):
+def image_to_bytes(image: Image.Image, format: str = "PNG") -> bytes:
     buffer = io.BytesIO()
     image.save(buffer, format=format)
     return buffer.getvalue()

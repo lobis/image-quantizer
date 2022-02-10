@@ -3,7 +3,7 @@ class RGB:
     G: int
     B: int
 
-    def __init__(self, rgb=None, r: int = None, g: int = None, b: int = None):
+    def __init__(self, rgb: list = None, r: int = None, g: int = None, b: int = None):
         r_g_b_none = r is None and g is None and b is None
         assert not (rgb is not None and not r_g_b_none), \
             "use 'rgb' or 'r', 'g', 'b' as initializers, not both"
@@ -41,7 +41,7 @@ class RGB:
 
 
 class Palette(list):
-    def __init__(self, palette=None):
+    def __init__(self, palette: list = None):
         # initializer is a list containing lists of 3 numbers (RBG colors)
         # i.e. initializer = [[0, 255, 0], [255, 0, 255], ...]
         if palette is None:

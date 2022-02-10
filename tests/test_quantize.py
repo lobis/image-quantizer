@@ -27,8 +27,10 @@ def test_quantize_image():
         result = Image.new("RGB", (2 * image.width, 2 * image.height))
 
         quantized_image_bw = quantize_image(image, palette=PALETTES["BLACK-AND-WHITE"])
-        quantized_image_bwr = quantize_image(image, palette=PALETTES["BLACK-WHITE-RED"])
+        quantized_image_bwr = quantize_image(image, palette="BLACK-WHITE-RED")
         quantized_image_7color = quantize_image(image, palette=PALETTES["WAVESHARE-EPD-7COLOR"])
+        with pytest.raises(AssertionError):
+            quantize_image(image, palette="INVALID-PALETTE-NAME")
 
         # combine images
         result.paste(image, (0, 0))

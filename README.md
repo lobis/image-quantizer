@@ -29,9 +29,9 @@ with Image.open("tests/data/cliff.jpg") as image:
     quantized_image.save("cliffs-quantized.png")
 ```
 
-![input example image](tests/data/cliff.jpg "Input example image")
+![input example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff.jpg "Input example image")
 
-![quantized example image](tests/data/cliff-quantized-7color.png "Quantized example image")
+![quantized example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff-quantized-7color.png "Quantized example image")
 
 ### Custom palette
 
@@ -53,4 +53,4 @@ with Image.open("tests/data/cliff.jpg") as image:
     quantized_image_custom.show()
 ```
 
-![quantized example image](tests/data/cliff-quantized-custom.png "Quantized example image")
+![quantized example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff-quantized-custom.png "Quantized example image")

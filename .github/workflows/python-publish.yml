@@ -24,6 +24,6 @@ jobs:
       - name: Publish package to TestPyPI
         uses: pypa/gh-action-pypi-publish@master
         with:
-          user: image-quantizer
+          user: lobis
           password: pypi-AgENdGVzdC5weXBpLm9yZwIkNGE0OTI4NWQtZTNhNy00OTFkLWExMWMtZjAzMTA4YTY2OTFlAAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiDaM9H9U7yvvPzauyuNbxDtqlF4l3HifbRrjEuINWomuQ
           repository_url: https://test.pypi.org/legacy/

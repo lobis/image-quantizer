@@ -25,5 +25,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: image-quantizer
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          password: pypi-AgENdGVzdC5weXBpLm9yZwIkNGE0OTI4NWQtZTNhNy00OTFkLWExMWMtZjAzMTA4YTY2OTFlAAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiDaM9H9U7yvvPzauyuNbxDtqlF4l3HifbRrjEuINWomuQ
           repository_url: https://test.pypi.org/legacy/

@@ -1,12 +1,14 @@
 import pathlib
 from distutils.core import setup
 
+exec(open("image_quantizer/version.py").read())  # loads __version__
+
 ROOT_DIR = pathlib.Path(__file__).parent
 README = (ROOT_DIR / "README.md").read_text()
 
 setup(
     name="image-quantizer",
-    version="0.0.0",
+    version=__version__,
     description="Convert image into quantized image compatible with Waveshare epaper display",
     long_description=README,
     long_description_content_type="text/markdown",

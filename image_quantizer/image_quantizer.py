@@ -1,6 +1,6 @@
 from PIL import Image
 import io
-import base64
+from typing import Union
 
 from .palette import Palette
 
@@ -15,7 +15,7 @@ PALETTE = [
 ]
 
 
-def quantize_image(image: Image.Image, palette: Palette, dither: bool = True):
+def quantize_image(image: Image.Image, palette: Union[Palette, list], dither: bool = True) -> Image.Image:
     # Create auxiliary image to hold the palette
     palette_image = Image.new("P", (16, 16))
 
@@ -23,6 +23,8 @@ def quantize_image(image: Image.Image, palette: Palette, dither: bool = True):
     palette_image.load()
     # Palette needs to be padded to 256 size, we repeat colors, it doesn't matter which
     palette_size_required = 256
+    if isinstance(palette, list):
+        palette = Palette(palette)
     palette_flat = palette.flat()
     assert len(palette_flat) <= palette_size_required * 3
     palette_padded = [palette_flat[i % len(palette_flat)]
@@ -30,13 +32,6 @@ def quantize_image(image: Image.Image, palette: Palette, dither: bool = True):
     palette_image.putpalette(palette_padded)
 
     quantized_image = image.quantize(palette=palette_image, dither=dither)
-
-    return quantized_image
-
-    # unique_colors = numpy.unique(quantized_image)
-    # assert len(unique_colors) <= len(palette)
-    # assert numpy.min(unique_colors) >= 0
-    # assert numpy.max(unique_colors) < len(palette)
 
     return quantized_image
 

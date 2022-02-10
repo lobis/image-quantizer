@@ -31,7 +31,7 @@ with Image.open("tests/data/cliff.jpg") as image:
 
 ![input example image](tests/data/cliff.jpg "Input example image")
 
-![quantized example image](tests/data/quantized-cliff.png "Quantized example image")
+![quantized example image](tests/data/cliff-quantized-7color.png "Quantized example image")
 
 ### Custom palette
 
@@ -52,3 +52,5 @@ with Image.open("tests/data/cliff.jpg") as image:
     quantized_image_custom = quantize_image(image, palette=palette)
     quantized_image_custom.show()
 ```
+
+![quantized example image](tests/data/cliff-quantized-custom.png "Quantized example image")

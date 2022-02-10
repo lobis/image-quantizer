@@ -58,11 +58,11 @@ class Palette(list):
 
         super(Palette, self).__init__(colors)
 
-    def __repr__(self):
-        return f"""Palette with {len(self)} colors: {", ".join([str(color) for color in self])}"""
-
     def flat(self):
         return sum(self, start=[])
+
+    def __repr__(self):
+        return f"""Palette with {len(self)} colors: {", ".join([str(color) for color in self])}"""
 
 
 PALETTES = {

@@ -1,6 +1,7 @@
 import pathlib
 from distutils.core import setup
 
+__version__ = ""  # added to prevent linting error
 exec(open("image_quantizer/version.py").read())  # loads __version__
 
 ROOT_DIR = pathlib.Path(__file__).parent

@@ -9,6 +9,7 @@ setup(
     version="0.0.0",
     description="Convert image into quantized image compatible with Waveshare epaper display",
     long_description=README,
+    long_description_content_type="text/markdown",
     url="https://github.com/lobis/image-quantizer",
     author="Luis Antonio Obis Aparicio",
     author_email="luis.antonio.obis@gmail.com",

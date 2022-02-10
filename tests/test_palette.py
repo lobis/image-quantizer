@@ -1,6 +1,6 @@
 import pytest
 
-from waveshare_epaper_image import RGB, Palette, PALETTES
+from image_quantizer import RGB, Palette, PALETTES
 
 
 def test_color():

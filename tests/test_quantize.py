@@ -4,7 +4,7 @@ import pathlib
 import os
 from PIL import Image
 
-from image_quantizer import quantize_image, PALETTES
+from image_quantizer import quantize_image, PALETTES, get_image_palette, split_image_by_color, RGB
 
 data_path = pathlib.Path(__file__).parents[0] / "data"
 test_image = data_path / "cliff.jpg"
@@ -60,3 +60,38 @@ def test_quantize_custom_palette():
         # quantized_image_custom.save(new_image_path)
         with Image.open(new_image_path) as test_result_image:
             assert list(test_result_image.getdata()) == list(quantized_image_custom.getdata())
+
+
+def test_quantize_black_white_red():
+    from image_quantizer import quantize_image
+
+    with Image.open(test_image) as image:
+        quantized_image_custom = quantize_image(image, palette="BLACK-WHITE-RED")
+        new_image_path = test_image.parents[0] / f"{test_image.stem}-quantized-BWR.png"
+        # quantized_image_custom.save(new_image_path)
+        with Image.open(new_image_path) as test_result_image:
+            assert list(test_result_image.getdata()) == list(quantized_image_custom.getdata())
+
+
+def test_get_image_palette():
+    image_path = test_image.parents[0] / f"{test_image.stem}-quantized-BWR.png"
+    with Image.open(image_path) as image:
+        palette = get_image_palette(image)
+
+    print(palette)
+    assert len(palette) == 3
+    assert palette == PALETTES["BLACK-WHITE-RED"]
+
+
+def test_split_image_by_colors():
+    image_path = test_image.parents[0] / f"{test_image.stem}-quantized-BWR.png"
+
+    with Image.open(image_path) as image:
+        result = split_image_by_color(image)
+
+    for color, image_split in result.items():
+        image_split.show()
+        new_image_path = test_image.parents[0] / f"{test_image.stem}-quantized-BWR-{color}.png"
+        # image_split.save(new_image_path)
+        with Image.open(new_image_path) as test_result_image:
+            assert list(test_result_image.getdata()) == list(image_split.getdata())

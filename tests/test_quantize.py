@@ -90,8 +90,15 @@ def test_split_image_by_colors():
         result = split_image_by_color(image)
 
     for color, image_split in result.items():
-        image_split.show()
-        new_image_path = test_image.parents[0] / f"{test_image.stem}-quantized-BWR-{color}.png"
+        assert color in [RGB([0, 0, 0]), RGB([255, 0, 0])]
+
+        color_name = "WHITE"
+        if color == RGB([0, 0, 0]):
+            color_name = "BLACK"
+        elif color == RGB([255, 0, 0]):
+            color_name = "RED"
+
+        new_image_path = test_image.parents[0] / f"{test_image.stem}-quantized-BWR-{color_name}.png"
         # image_split.save(new_image_path)
         with Image.open(new_image_path) as test_result_image:
             assert list(test_result_image.getdata()) == list(image_split.getdata())

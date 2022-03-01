@@ -39,6 +39,9 @@ class RGB:
     def __repr__(self):
         return f"[R={self.R}, G={self.G}, B={self.B}]"
 
+    def __hash__(self):
+        return hash(str(self))
+
 
 class Palette(list):
     def __init__(self, palette: list = None):
@@ -52,7 +55,6 @@ class Palette(list):
         for color in palette:
             # check if color is valid
             rgb = RGB(color)
-            rgb = [rgb.R, rgb.G, rgb.B]
             assert rgb not in colors
             colors.append(rgb)
 

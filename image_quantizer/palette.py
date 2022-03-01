@@ -1,9 +1,12 @@
+from typing import Union
+
+
 class RGB:
     R: int
     G: int
     B: int
 
-    def __init__(self, rgb: list = None, r: int = None, g: int = None, b: int = None):
+    def __init__(self, rgb: Union[list, tuple] = None, r: int = None, g: int = None, b: int = None):
         r_g_b_none = r is None and g is None and b is None
         assert not (rgb is not None and not r_g_b_none), \
             "use 'rgb' or 'r', 'g', 'b' as initializers, not both"
@@ -54,9 +57,10 @@ class Palette(list):
 
         for color in palette:
             # check if color is valid
-            rgb = RGB(color)
-            assert rgb not in colors
-            colors.append(rgb)
+            if not isinstance(color, RGB):
+                color = RGB(color)
+            assert color not in colors
+            colors.append(color)
 
         super(Palette, self).__init__(colors)
 

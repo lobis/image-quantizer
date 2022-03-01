@@ -54,3 +54,27 @@ with Image.open("tests/data/cliff.jpg") as image:
 ```
 
 ![quantized example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff-quantized-custom.png "Quantized example image")
+
+### Split by Palette
+
+In some cases such as highlighted [here](https://github.com/lobis/image-quantizer/issues/1), it might be useful to split
+an image into its colors. This is necessary to display the image in a waveshare RED-WHITE-BLACK display.
+
+```
+from image_quantizer import quantize_image, split_image_by_color
+
+with Image.open("tests/data/cliff.jpg") as image:
+    quantized_image = quantize_image(image, palette=PALETTES["BLACK-WHITE-RED"])
+    split_images = split_image_by_color(image)
+    for color, image in split_images:
+        image.show()
+```
+
+Original image:
+![quantized example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff-quantized-BWR.png "Quantized example image BWR")
+
+Single palette color images:
+
+![quantized example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff-quantized-BWR-BLACK.png "Quantized example image BWR")
+![quantized example image](https://raw.githubusercontent.com/lobis/image-quantizer/main/tests/data/cliff-quantized-BWR-RED.png "Quantized example image BWR")
+

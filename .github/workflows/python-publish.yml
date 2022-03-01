@@ -25,6 +25,12 @@ jobs:
       - name: Build package 📦
         run: python -m build
 
+      - name: Publish package 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          
       - name: Publish package 📦 to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
@@ -32,8 +38,3 @@ jobs:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
 
-      - name: Publish package 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}

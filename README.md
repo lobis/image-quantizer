@@ -1,3 +1,5 @@
+[![Install and Test](https://github.com/lobis/image-quantizer/actions/workflows/python-test.yml/badge.svg)](https://github.com/lobis/image-quantizer/actions/workflows/python-test.yml)
+
 # Image Quantizer
 
 Simple Python package to convert an image into a quantized image using a customizable palette. Resulting image can be
